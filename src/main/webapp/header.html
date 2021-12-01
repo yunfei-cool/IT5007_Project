@@ -1,0 +1,60 @@
+<script>
+    $(function () {
+        //search the information
+        $.get("findUserServlet",{},function (data) {
+            //{uid:1,name:'zhangsan'}
+            var msg = "Welcome Back，"+data.name;
+            $("#span_username").html(msg);
+
+        });
+    })
+</script>
+
+<!-- start -->
+    <header id="header">
+        <div class="shortcut">
+            <!-- not login  -->
+            <div class="login_out">
+                <a href="login.html">Login</a>
+                <a href="register.html">Register</a>
+            </div>
+            <!-- login  -->
+            <div class="login">
+            	
+                <span id="span_username"></span>
+                <a href="javascript:location.href='exitServlet';">Exit</a>
+            </div>
+        </div>
+        <div class="header_wrap">
+            <div class="topbar">
+                <div class="logo">
+                    <a href="/"><img src="images/logo.png" alt="" width="90px"></a>
+                </div>
+                <div class="search">
+                    <input name="" type="text" placeholder="Please type the product you interest" class="search_input" autocomplete="off">
+                    <a href="javascript:;" class="search-button">Search</a>
+                </div>
+                <div class="hottel" >
+                    <div class="hot_pic" >
+                        <img src="images/hot_tel.jpg" alt="" style="margin-top: 10px " >
+                    </div>
+                    <div class="hot_tel">
+                        <p class="hot_time">HotLine(9:00-6:00)</p>
+                        <p class="hot_num">400-618-9090</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header end -->
+     <!-- nav -->
+    <div class="navitem">
+        <ul class="nav">
+            <li class="nav-active"><a href="index.html">Home Page</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="route_list.html">Product</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="favoriterank.html">My Collection</a></li>
+        </ul>
+    </div>
+    

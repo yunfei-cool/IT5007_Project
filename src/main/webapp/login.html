@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>V&H Education Login</title>
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+	<!--jquery-->
+	<script src="js/jquery-3.3.1.js"></script>
+	<script>
+		$(function () {
+			//1.bind click event
+			$("#btn_sub").click(function () {
+				//2.post ajax request
+				$.post("loginServlet",$("#loginForm").serialize(),function (data) {
+					//data : {flag:false,errorMsg:''}
+					if(data.flag){
+						//login successfully
+						location.href="index.html";
+					}else{
+						//failed
+						$("#errorMsg").html(data.errorMsg);
+					}
+				});
+			});
+		});
+	</script>
+</head>
+
+<body>
+<!--header-->
+<div id="header"></div>
+    <!-- header end -->
+    <section id="login_wrap">
+        <div class="fullscreen-bg" style="background: url(images/background.jpg);height: 600px;">
+        	
+        </div>
+        <div class="login-box">
+        	<div class="title">
+        		<img src="images/login_logo.png" alt="">
+        		<span>Welcome to V&H</span>
+        	</div>
+        	<div class="login_inner">
+				
+				<!--errorMsg-->
+        		<div id="errorMsg" class="alert alert-danger" ></div>
+				<form id="loginForm" action="" method="post" accept-charset="utf-8">
+        			<input type="hidden" name="action" value="login"/>
+					<input name="username" type="text" placeholder="Please input your username" autocomplete="off">
+        			<input name="password" type="text" placeholder="Please input your password" autocomplete="off">
+        			<div class="verify">
+					<input name="check" type="text" placeholder="type checkcode" autocomplete="off">
+					<span><img src="checkCode" alt="" onclick="changeCheckCode(this)"></span>
+					<script type="text/javascript">
+						//onclick event
+						function changeCheckCode(img) {
+							img.src="checkCode?"+new Date().getTime();
+						}
+					</script>
+			</div>
+			<div class="submit_btn">
+        				<button type="button" id="btn_sub">Login</button>
+        				<div class="auto_login" >
+        					<input type="checkbox" name="" class="checkbox">
+        					<span>AutoLog</span>
+        				</div>        				
+        			</div>        			       		
+        		</form>
+        		<div class="reg">No account？<a href="javascript:;">Register</a></div>
+        	</div>
+        </div>
+    </section>
+    <!--footer-->
+    <div id="footer"></div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <!--shared header and footer-->
+    <script type="text/javascript" src="js/include.js"></script>
+</body>
+
+</html>
